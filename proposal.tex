@@ -5,12 +5,15 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
-\author{George Lesica}
 \title{Thesis Proposal}
+\author{George Lesica\\
+Department of Computer Science\\
+University of Montana\\
+Missoula, MT}
 \begin{document}
 \maketitle
 
-\section{Introduction}
+\section*{Introduction}
 
 \paragraph{}
 The theory of neutral evolution was first proposed by Kimura~\cite{Kimura1984}
@@ -38,11 +41,25 @@ the peaks themselves. Adaptive walks on such landscapes are likely to result in
 higher fitness or, put another way, populations are less likely to become stuck
 at local optima~\cite{Newman1998}.
 
-\section{Goals}
+\section*{Goals}
 
-\section{Projects}
+\section*{Projects}
 
-\section{Analysis}
+\paragraph{}
+The first project will test the shifting balance theory proposed by
+Wright~\cite{Wright1982}. We will enumerate the possible genotypes for small NK
+and NKp landscapes, then compute the prominence\footnote{Prominence is a
+concept from topography. The prominence of a peak is defined to be the
+vertical distance between the peak and the lowest countour line encircling it
+that has no higher summit.} and identify the key col\footnote{The key col, also
+called the saddle point, of a peak is the lowest point on the highest ridge
+between a peak and a higher peak that defines its prominence.} for each fitness
+peak.
+
+\paragraph{}
+Ordinarily, a large population would be unlikely to move between fitness peaks, even on a neutral landscape. Wright's theory attempted to resolve the apparent conflict between theory and observation by suggesting that subpopulations may be able to sustain temporarily reduced fitness given a sufficiently high rate of mutation. Wright suggested that a subpopulations might ``jump'' to a neighboring domain of attraction and climb the corresponding peak. The beneficial mutation might then fix in the larger population. We propose that this process is simpler and more likely to occur if there exist neutral or nearly-neutral ridges between peaks.
+
+\section*{Analysis}
 
 \bibliography{fitness}{}
 \bibliographystyle{acm}

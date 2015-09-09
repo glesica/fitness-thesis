@@ -23,28 +23,43 @@ Missoula, MT}
 \paragraph{}
 The theory of neutral evolution was first proposed by Kimura~\cite{Kimura1984}
 to explain observed differences between evolution in populations of larger
-organisms and evolution at the molecular level. In neutral evolution a
-population diffuses through genotype space along neutral pathways that form a
-percolating network. That is, it is possible to ``move'' from one genotype to
-the next without a difference in fitness. Random mutation drives this process.
-Eventually, some individual will mutate off of the neutral network and onto a
-neutral network with higher fitness, and this mutation will fix within the
-population with some probability.
+organisms and evolution at the molecular level. A population undergoing
+neutral evolution is able to ``explore'' genotype space through neutral
+mutations. Neutral mutation refers to mutations that have little or no affect
+on the fitness of an organism. In biology, this is the result of a many-to-one
+relationship between genotypes and phenotypes~\cite{Newman1998}.
 
 \paragraph{}
-Neutrality may be of interest to a variety of fields outside the biological
-sciences, including evolutionary computation. Fitness landscapes have
-traditionally been seen as rugged, with many, more or less independent, peaks
-and valleys pervading the space. Under these conditions, it is possible, even
-likely, that a population undergoing an adaptive walk on such a landscape will
-become ``trapped'' at a local optimum.
+A population undergoing neutral evolution is likely to exhibit high genotypic
+diversity. This presents opportunities for the population. Its members are able
+to drift through genotypic space since selective pressure does not operate in
+the context of neutral mutations. As a result, there is a greater likelihood
+that some population member will ``discover'' a genotype that can easily mutate
+into a genotype that maps to a higher-fitness phenotype, elevating the entire
+population assuming the mutation fixes.
 
 \paragraph{}
-Neutral landscapes, on the other hand, can be seen more as mountain ranges,
-with ridges running along slopes joining together peaks, and saddles between
-the peaks themselves. Adaptive walks on such landscapes are likely to result in
-higher fitness or, put another way, populations are less likely to become stuck
-at local optima~\cite{Newman1998}.
+In evolutionary computation, we can think of exploring a fitness landscape
+along neutral pathways that may form a percolating (or nearly so) network, that
+is, a network that extends through a large portion of the landscape. That is,
+it is possible to ``move'' from one genotype to the next without a difference
+in fitness.  Random mutation drives this process.  Eventually, some individual
+will mutate off of the neutral network and onto a neutral network with higher
+fitness, and this mutation will fix within the population with some
+probability.
+
+\paragraph{}
+Fitness landscapes have traditionally been seen as rugged, with many, more or
+less independent, peaks and valleys pervading the space. Under these
+conditions, it is possible, even likely, that a population undergoing an
+adaptive walk will become ``trapped'' at a local optimum.
+
+\paragraph{}
+Neutral landscapes, on the other hand, can be more accurately conveived as
+mountain ranges, with ridges running along slopes joining together peaks, and
+saddles between the peaks themselves. Adaptive walks on such landscapes are
+likely to result in higher fitness or, put another way, populations are less
+likely to become stuck at local optima~\cite{Newman1998}.
 
 \section{Goals}
 
@@ -54,7 +69,15 @@ implement both using the Julia\footnote{\url{http://julialang.org/}}
 programming language. The first is a library to facilitate experiments using
 the NK family of fitness landscapes. We will use this library for our own
 experiments in addition to contributing it to the community as open source
-software. Additional details are provided below.
+software. Additional details are provided below. The second is a library for
+performing Cartesian Genetic
+Programming\footnote{\url{http://www.cartesiangp.co.uk/}} in Julia. We plan to
+use this library to test hypotheses and in future projects.
+
+\paragraph{}
+We also intend to use the aforementioned software to test several hypotheses
+related to neutral landscapes and evolutionary computation. We hope to produce
+results that are relevant to biological evolution as well.
 
 \section{Projects}
 
@@ -67,9 +90,19 @@ be used by others in the future. We will provide it as a separate package under
 a permissive license that will hopefully allow future work and improvement.
 
 \paragraph{}
-We intend to implement several NK variants including NKp neutral landscapes. We
-will also provide implementations of several common techniques such as adaptive
-walks and proportional selection from a population.
+We intend to implement several NK variants including NKq and NKp neutral
+landscapes. We will also provide implementations of several common techniques
+such as adaptive walks and proportional selection from a population.
+
+\subsection{CGP.jl Library}
+
+\paragraph{}
+Cartesian Genetic Programming (CGP) eschews the tree structures more commonly
+associated with genetic programming in favor of a grid (hence ``cartesian'') of
+functions that can take as their inputs the outputs from any preceeding
+functions.
+
+\section{Experiments}
 
 \subsection{Shifting Balance Experiment}
 

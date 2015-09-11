@@ -66,7 +66,18 @@ saddles between the peaks themselves. Adaptive walks on such landscapes are
 likely to result in higher fitness or, put another way, populations are less
 likely to become stuck at local optima~\cite{Newman1998}.
 
-\section{Goals}
+\section{Hypotheses}
+
+\subsection{Mutation-Selection Balance}
+
+\paragraph{}
+Gavrilets demonstrated~\cite{Gavrilets1997} that, on an uncorrelated landscape,
+the percolation threshold for a fitness landscape is inversely correlated with
+the number of dimensions under consideration. We hypothesize that this is true
+for correlated landscapes as well, given an appropriate balance between
+selection and mutation pressures.
+
+\section{Methods}
 
 \paragraph{}
 We intend to create two pieces of reusable software. We have chosen to
@@ -78,13 +89,6 @@ software. Additional details are provided below. The second is a library for
 performing Cartesian Genetic
 Programming\footnote{\url{http://www.cartesiangp.co.uk/}} in Julia. We plan to
 use this library to test hypotheses and in future projects.
-
-\paragraph{}
-We also intend to use the aforementioned software to test several hypotheses
-related to neutral landscapes and evolutionary computation. We hope to produce
-results that are relevant to biological evolution as well.
-
-\section{Projects}
 
 \subsection{NK.jl Library}
 
@@ -103,8 +107,8 @@ such as adaptive walks and proportional selection from a population.
 
 \paragraph{}
 Cartesian Genetic Programming (CGP) eschews the tree structures more commonly
-associated with genetic programming in favor of a grid (hence ``cartesian'') of
-functions that can take as their inputs the outputs from any preceeding
+associated with genetic programming in favor of a grid (hence ``Cartesian'') of
+functions that can take as their inputs the outputs from any preceding
 functions.
 
 \section{Experiments}
@@ -117,7 +121,7 @@ Wright~\cite{Wright1982}\cite{Wright1931}. We will enumerate the possible
 genotypes for small NK and NKp landscapes, then compute the
 prominence\footnote{Prominence is a concept from topography. The prominence of
 a peak is defined to be the vertical distance between the peak and the
-lowest countour line encircling it that has no higher summit.} and identify the
+lowest contour line encircling it that has no higher summit.} and identify the
 key col\footnote{The key col, also called the saddle point, of a peak is the
 lowest point on the highest ridge between a peak and a higher peak that
 defines its prominence.} for each fitness peak.

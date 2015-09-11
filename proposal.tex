@@ -39,14 +39,19 @@ into a genotype that maps to a higher-fitness phenotype, elevating the entire
 population assuming the mutation fixes.
 
 \paragraph{}
-In evolutionary computation, we can think of exploring a fitness landscape
-along neutral pathways that may form a percolating (or nearly so) network, that
-is, a network that extends through a large portion of the landscape. That is,
-it is possible to ``move'' from one genotype to the next without a difference
-in fitness.  Random mutation drives this process.  Eventually, some individual
-will mutate off of the neutral network and onto a neutral network with higher
-fitness, and this mutation will fix within the population with some
-probability.
+In computational modeling we can think of two genotypes that produce the same
+phenotype (or which have equal fitness), each of which may be produced by
+mutating the other in some small way, as two nodes in a neutral network. Such
+networks may be extensive, permeating genotype space. In the case in which the
+neutral network for a given phenotype (or fitness value) forms a single giant
+component (or comes close) it is said to be a percolating neutral network.
+
+\paragraph{}
+We can think of exploring a fitness landscape by following neutral pathways
+that may or may not form a percolating (or nearly so) network. Random mutation
+drives this process.  Eventually, some individual will mutate off of the
+neutral network and onto a neutral network with higher fitness, and this
+mutation will fix within the population with some probability.
 
 \paragraph{}
 Fitness landscapes have traditionally been seen as rugged, with many, more or
@@ -55,7 +60,7 @@ conditions, it is possible, even likely, that a population undergoing an
 adaptive walk will become ``trapped'' at a local optimum.
 
 \paragraph{}
-Neutral landscapes, on the other hand, can be more accurately conveived as
+Neutral landscapes, on the other hand, can be more accurately conceived as
 mountain ranges, with ridges running along slopes joining together peaks, and
 saddles between the peaks themselves. Adaptive walks on such landscapes are
 likely to result in higher fitness or, put another way, populations are less

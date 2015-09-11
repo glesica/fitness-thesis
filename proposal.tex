@@ -41,10 +41,19 @@ population assuming the mutation fixes.
 \paragraph{}
 In computational modeling we can think of two genotypes that produce the same
 phenotype (or which have equal fitness), each of which may be produced by
-mutating the other in some small way, as two nodes in a neutral network. Such
-networks may be extensive, permeating genotype space. In the case in which the
-neutral network for a given phenotype (or fitness value) forms a single giant
-component (or comes close) it is said to be a percolating neutral network.
+mutating the other in some small way, as two nodes in a neutral network. Many
+such networks may exist for a particular genome, each corresponding to a
+particular phenotype or fitness level. In some cases, each of these networks
+will be small. In other cases, such networks may be expansive and may permeate
+the genotype space. In the case where the neutral network for a given phenotype
+(or fitness value) forms a single giant component (or comes close) it is said
+to be a percolating neutral network.
+
+\paragraph{}
+A set of genotypes and their corresponding phenotypes or fitness levels make up
+a fitness landscape. A fitness landscape is simply a visual metaphor. The
+intuition is that higher ground within the landscape corresponds to higher
+fitness.
 
 \paragraph{}
 We can think of exploring a fitness landscape by following neutral pathways
@@ -80,15 +89,8 @@ selection and mutation pressures.
 \section{Methods}
 
 \paragraph{}
-We intend to create two pieces of reusable software. We have chosen to
-implement both using the Julia\footnote{\url{http://julialang.org/}}
-programming language. The first is a library to facilitate experiments using
-the NK family of fitness landscapes. We will use this library for our own
-experiments in addition to contributing it to the community as open source
-software. Additional details are provided below. The second is a library for
-performing Cartesian Genetic
-Programming\footnote{\url{http://www.cartesiangp.co.uk/}} in Julia. We plan to
-use this library to test hypotheses and in future projects.
+To facilitate testing our hypotheses, we intend to create two pieces of
+reusable software, both of which will be released as open source software.
 
 \subsection{NK.jl Library}
 
@@ -96,7 +98,9 @@ use this library to test hypotheses and in future projects.
 We have opted to generalize our NK landscape
 implementation\footnote{\url{https://github.com/glesica/NK.jl}} so that it may
 be used by others in the future. We will provide it as a separate package under
-a permissive license that will hopefully allow future work and improvement.
+a permissive license that will hopefully allow future work and improvement.  We
+will use this library for our own experiments in addition to contributing it to
+the community as open source software.
 
 \paragraph{}
 We intend to implement several NK variants including NKq and NKp neutral
@@ -109,7 +113,8 @@ such as adaptive walks and proportional selection from a population.
 Cartesian Genetic Programming (CGP) eschews the tree structures more commonly
 associated with genetic programming in favor of a grid (hence ``Cartesian'') of
 functions that can take as their inputs the outputs from any preceding
-functions.
+functions. Our CGP library\footnote{\url{https://github.com/glesica/CGP.jl}}
+attempts to combine computation performance with ease-of-use.
 
 \section{Experiments}
 

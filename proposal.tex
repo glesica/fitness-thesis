@@ -13,12 +13,16 @@
 \author{George Lesica\\
 Department of Computer Science\\
 University of Montana\\
-Missoula, MT}
+Missoula, MT\\
+\\
+Advisor: Alden Wright}
 
 \begin{document}
 \maketitle
 
 \section{Introduction}
+
+\subsection{Biological Motivations}
 
 \paragraph{}
 The theory of neutral evolution was first proposed by Kimura~\cite{Kimura1984}
@@ -74,7 +78,7 @@ sometimes going from very low to very high in a short distance.
 An adaptive walk over a fitness landscape is the process of choosing a
 genotype, then mutating it into a new, fitter genotype and repeating the
 process. The fact that the new genotype is always fitter (or possibly at least
-as-fit) as the current genotype clearly differentiates an adaptive walk from a
+as fit) as the current genotype clearly differentiates an adaptive walk from a
 random walk, which can also be useful to the study of fitness landscapes. It is
 helpful to know that this process is often called ``hill climbing'', which
 matches up with the landscape metaphor quite neatly.
@@ -100,8 +104,12 @@ goal.
 \subsubsection{Neutral Networks}
 
 \paragraph{}
-Adaptive walks on fitness landscapes that possess neutral networks, however,
-are less likely to dead-end.
+Neutral landscapes, on the other hand, can be more accurately imagined as
+mountain ranges, with ridges running along slopes joining together peaks,
+saddles between the peaks themselves, and relatively flat valleys and meadows.
+Adaptive walks on such landscapes are likely to result in higher fitness or,
+put another way, populations are less likely to become stuck at local
+optima~\cite{Newman1998}.
 
 \paragraph{}
 We can think of exploring a fitness landscape by following neutral pathways
@@ -111,24 +119,23 @@ mutate off of the neutral network and onto a neutral network with higher
 fitness. If this mutation fixes in the population, then the population will
 have adapted or evolved.
 
-\paragraph{}
-Neutral landscapes, on the other hand, can be more accurately imagined as
-mountain ranges, with ridges running along slopes joining together peaks,
-saddles between the peaks themselves, and relatively flat valleys and meadows.
-Adaptive walks on such landscapes are likely to result in higher fitness or,
-put another way, populations are less likely to become stuck at local
-optima~\cite{Newman1998}.
-
 \section{Hypotheses}
 
 \subsection{Mutation-Selection Balance}
 
 \paragraph{}
-Gavrilets demonstrated~\cite{Gavrilets1997} that, on an uncorrelated landscape,
-the percolation threshold for a fitness landscape is inversely correlated with
-the number of dimensions under consideration. We hypothesize that this is true
-for correlated landscapes as well, given an appropriate balance between
-selection and mutation pressures.
+Gavrilets demonstrated~\cite{Gavrilets1997} that the percolation threshold for
+an uncorrelated fitness landscape scales with the inverse of the number of
+dimensions under consideration. The percolation threshold is the probability
+that a given genotype is part of a particular neutral network (Gavrilets
+limited fitness values to ``high'' and ``low'', so the neutral network in
+question was the high fitness network). In other words, as the number of
+dimensions goes up, it takes a smaller share of the nodes to create a
+percolating neutral network.
+
+\paragraph{}
+We hypothesize that this is true for correlated landscapes as well,
+given an appropriate balance between selection and mutation pressures.
 
 \section{Methods}
 

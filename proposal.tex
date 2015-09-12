@@ -38,6 +38,8 @@ that some population member will ``discover'' a genotype that can easily mutate
 into a genotype that maps to a higher-fitness phenotype, elevating the entire
 population assuming the mutation fixes.
 
+\subsection{Computational Modeling}
+
 \paragraph{}
 In computational modeling we can think of two genotypes that produce the same
 phenotype (or which have equal fitness), each of which may be produced by
@@ -49,37 +51,73 @@ the genotype space. In the case where the neutral network for a given phenotype
 (or fitness value) forms a single giant component (or comes close) it is said
 to be a percolating neutral network.
 
-\paragraph{}
-A set of genotypes and their corresponding phenotypes or fitness levels make up
-a fitness landscape, which is simply a visual metaphor. The intuition is that
-higher ground within the landscape corresponds to higher fitness. Fitness
-landscapes can be smooth or rugged. Smooth landscapes have lower peaks, in
-other words there is less difference between fit and unfit genotypes. Fitness
-landscapes can also be correlated or uncorrelated. A correlated landscape
-exhibits auto-correlation. This is most naturally understood as the expected
-correlation between successive fitness values during a random walk across the
-landscape. Visually, a correlated landscape might look similar to rolling
-hills, whereas an uncorrelated landscape would appear jagged.
+\subsubsection{Fitness Landscapes}
 
 \paragraph{}
-We can think of exploring a fitness landscape by following neutral pathways
-that may or may not form a percolating (or nearly so) network. Random mutation
-drives this process.  Eventually, some individual will mutate off of the
-neutral network and onto a neutral network with higher fitness, and this
-mutation will fix within the population with some probability.
+A set of genotypes and their corresponding phenotypes or fitness levels make up
+a fitness landscape, which is simply a useful visual metaphor. The intuition is
+that higher ground within the landscape corresponds to higher fitness. Fitness
+landscapes can be smooth or rugged. Smooth landscapes have lower peaks, in
+other words there is less difference between fit and unfit genotypes.
+
+\paragraph{}
+Fitness landscapes can also be correlated or uncorrelated. A correlated
+landscape exhibits auto-correlation. This is most naturally understood as the
+expected correlation between successive fitness values during a random walk
+across the landscape. Visually, a correlated landscape might look similar to
+rolling hills, whereas an uncorrelated landscape would appear extremely jagged,
+sometimes going from very low to very high in a short distance.
+
+\subsubsection{Adaptive Walks}
+
+\paragraph{}
+An adaptive walk over a fitness landscape is the process of choosing a
+genotype, then mutating it into a new, fitter genotype and repeating the
+process. The fact that the new genotype is always fitter (or possibly at least
+as-fit) as the current genotype clearly differentiates an adaptive walk from a
+random walk, which can also be useful to the study of fitness landscapes. It is
+helpful to know that this process is often called ``hill climbing'', which
+matches up with the landscape metaphor quite neatly.
+
+\paragraph{}
+There are several different methods for choosing the next genotype to occupy
+during an adaptive walk. Some of the common ones are nicely summarized
+in~\cite{Nowak2015}. These include fitness-dependent, where the choice is made
+randomly, but fitter genotypes are given preference. Alternately, the choice
+can be purely random. A greedy strategy chooses the fittest candidate, and
+finally, a reluctant strategy chooses the least fit candidate that is fitter
+than the current genotype.
 
 \paragraph{}
 Fitness landscapes have traditionally been seen as rugged, with many, more or
 less independent, peaks and valleys pervading the space. Under these
 conditions, it is possible, even likely, that a population undergoing an
-adaptive walk will become ``trapped'' at a local optimum.
+adaptive walk will become ``trapped'' at a local optimum. Imagine attempting to
+reach the summit of Mount Everest by starting where you are and continuously
+walking toward a higher elevation. You will almost certainly fail to reach your
+goal.
+
+\subsubsection{Neutral Networks}
 
 \paragraph{}
-Neutral landscapes, on the other hand, can be more accurately conceived as
-mountain ranges, with ridges running along slopes joining together peaks, and
-saddles between the peaks themselves. Adaptive walks on such landscapes are
-likely to result in higher fitness or, put another way, populations are less
-likely to become stuck at local optima~\cite{Newman1998}.
+Adaptive walks on fitness landscapes that possess neutral networks, however,
+are less likely to dead-end.
+
+\paragraph{}
+We can think of exploring a fitness landscape by following neutral pathways
+that may or may not form a percolating (or nearly so) network. Random mutation
+drives this process. Eventually (or perhaps frequently), some individual will
+mutate off of the neutral network and onto a neutral network with higher
+fitness. If this mutation fixes in the population, then the population will
+have adapted or evolved.
+
+\paragraph{}
+Neutral landscapes, on the other hand, can be more accurately imagined as
+mountain ranges, with ridges running along slopes joining together peaks,
+saddles between the peaks themselves, and relatively flat valleys and meadows.
+Adaptive walks on such landscapes are likely to result in higher fitness or,
+put another way, populations are less likely to become stuck at local
+optima~\cite{Newman1998}.
 
 \section{Hypotheses}
 

@@ -98,8 +98,8 @@ less independent, peaks and valleys pervading the space. Under these
 conditions, it is possible, even likely, that a population undergoing an
 adaptive walk will become ``trapped'' at a local optimum. Imagine attempting to
 reach the summit of Mount Everest by starting where you are and continuously
-walking toward a higher elevation. You will almost certainly fail to reach your
-goal.
+walking toward a higher elevation. You will almost certainly end up at the top
+of some hill or smaller mountain with nowhere to go.
 
 \subsubsection{Neutral Networks}
 
@@ -107,9 +107,9 @@ goal.
 Neutral landscapes, on the other hand, can be more accurately imagined as
 mountain ranges, with ridges running along slopes joining together peaks,
 saddles between the peaks themselves, and relatively flat valleys and meadows.
-Adaptive walks on such landscapes are likely to result in higher fitness or,
-put another way, populations are less likely to become stuck at local
-optima~\cite{Newman1998}.
+Adaptive walks on such landscapes are likely to result in higher fitness, as
+demonstrated by Barnett~\cite{Barnett1998} or, put another way, populations are
+less likely to become stuck at local optima~\cite{Newman1998}.
 
 \paragraph{}
 We can think of exploring a fitness landscape by following neutral pathways
@@ -129,13 +129,18 @@ an uncorrelated fitness landscape scales with the inverse of the number of
 dimensions under consideration. The percolation threshold is the probability
 that a given genotype is part of a particular neutral network (Gavrilets
 limited fitness values to ``high'' and ``low'', so the neutral network in
-question was the high fitness network). In other words, as the number of
-dimensions goes up, it takes a smaller share of the nodes to create a
-percolating neutral network.
+question was the high fitness network).
 
 \paragraph{}
-We hypothesize that this is true for correlated landscapes as well,
-given an appropriate balance between selection and mutation pressures.
+In other words, as the number of dimensions goes up, it takes a smaller share
+of the nodes to create a percolating neutral network. This makes sense because
+each additional dimension increases the number of ``routes'' between two
+points. For example, cross the Grand Canyon is quite an adventure in a car or
+on foot, but if a helicopter is available, it becomes a fairly simple task.
+
+\paragraph{}
+We hypothesize that this holds for correlated landscapes as well, given an
+appropriate balance between selection and mutation pressures.
 
 \section{Methods}
 

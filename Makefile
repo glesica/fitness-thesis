@@ -7,7 +7,9 @@ all: proposal
 clean:
 	rm -f *.aux *.log
 
-proposal:
+proposal: proposal.pdf
+
+proposal.pdf: proposal.tex fitness.bib
 	pdflatex proposal.tex
 	bibtex proposal
 	pdflatex proposal.tex

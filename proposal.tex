@@ -176,6 +176,12 @@ two variants adapt the general NK landscape to add neutrality.
 
 \subsubsection{NKq Landscapes}
 
+\paragraph{}
+The NKq landscape developed by Newman and Engelhardt~\cite{Newman1998} achieves
+neutrality using integral fitness values in the tables described above. Instead
+of values between zero and one, integers in the interval $\left[0,F-1\right]$
+are used, where $F$ is chosen in advance and is often set to 2.
+
 \subsubsection{NKp Landscapes}
 
 \paragraph{}
@@ -184,7 +190,8 @@ parameter $p$ which is assigned from the interval $\left[0,1\right]$. When
 fitness values are assigned during creation of the landscape, fitness of
 exactly 0 is chosen with probability $p$. This means that some loci will have
 make no contribution to genotype fitness for certain values of the $K$ loci to
-which they are linked.
+which they are linked. A change at one of these loci will then have no impact
+on the fitness of the genotype.
 
 \section{Hypotheses}
 

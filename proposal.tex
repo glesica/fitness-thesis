@@ -136,6 +136,56 @@ mutate off of the neutral network and onto a neutral network with higher
 fitness. If this mutation fixes in the population, then the population will
 have adapted or evolved.
 
+\section{NK Fitness Landscapes}
+
+\paragraph{}
+The NK fitness landscape, developed by Kauffman~\cite{Kauffman1993}, is a
+fitness model that features tunable ruggedness. It derives its name from the
+fact that an NK landscape is parameterized by two values: $N$, the number of
+loci in each genotype, and $K$, the number of loci that are considered
+epistatically linked to each locus.
+
+\paragraph{}
+The value of $K$ determines how rugged the landscape will be. Higher values
+yield greater ruggedness. The special case where $K=0$ yields a landscape with
+just a single peak.
+
+\subsection{Construction and Evaluation}
+
+\paragraph{}
+An NK landscape is constructed by first choosing values for $N$ and $K$. Then,
+for each locus in $N$, $K$ other loci are chosen at random. For each
+combination of alleles for those $K+1$ loci (two alleles, 0 and 1, are
+typically used for simplicity), a fitness value between zero and one is chosen.
+
+\paragraph{}
+Evaluation is done by computing the average fitness across the contributions
+from each locus. The contribution for a single locus is computed using the
+correct fitness based on the values of the $K+1$ relevant loci and the fitness
+table computed when the landscape was created\footnote{In reality, because the
+memory required to store such a table grows exponentially with $K$, fitness
+values are more commonly generated on-demand. The result, however, is
+unchanged.}.
+
+\subsection{Variants}
+
+\paragraph{}
+One noteworthy, but perhaps not entirely obvious, implication of the NK design
+is that the resultant landscape is almost certainly not neutral. The following
+two variants adapt the general NK landscape to add neutrality.
+
+\subsubsection{NKq Landscapes}
+
+\subsubsection{NKp Landscapes}
+
+\paragraph{}
+The NKp landscape, due to Barnett~\cite{Barnett1998}, adds an additional
+parameter $p$ which is assigned from the interval $\left[0,1\right]$. When
+fitness values are assigned during creation of the landscape, fitness of
+exactly 0 is chosen with probability $p$. This means that some loci will have
+make no contribution to genotype fitness for certain values of the $K$ loci to
+which they are linked.
+
 \section{Hypotheses}
 
 \subsection{Mutation-Selection Balance}

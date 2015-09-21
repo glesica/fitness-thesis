@@ -37,8 +37,8 @@ Second, ``that most changes at the molecular level that are fixed over
 evolutionary time are selectively neutral and are fixed by drift.''
 
 \paragraph{}
-Neutral evolution enables a population to ``explore'' genotype space via
-neutral drift. Neutral mutation itself refers to mutations that have little or
+Neutral evolution enables a population to ``explore'' sequence space via
+neutral mutation. Neutral mutation itself refers to mutations that have little or
 no affect on the fitness of an organism, which is not to say that they have no
 affect at all. In biology, this is the result of the many-to-one relationship
 between genotypes and phenotypes~\cite{Newman1998}.
@@ -46,11 +46,11 @@ between genotypes and phenotypes~\cite{Newman1998}.
 \paragraph{}
 A population undergoing neutral evolution is likely to exhibit high genotypic
 diversity. This presents opportunities for the population. Its members are able
-to drift through genotypic space since selective pressure does not operate in
-the context of neutral mutations. As a result, there is a greater likelihood
-that some population member will ``discover'' a genotype that can easily mutate
-into one that maps to a higher-fitness phenotype, elevating the entire
-population when, and if, the mutation reaches fixation.
+to explore the sequence space since selective pressure does not operate in the
+context of neutral mutations. As a result, there is a greater likelihood that
+some population member will ``discover'' a genotype that maps to a
+higher-fitness phenotype, elevating the entire population when, and if, the
+mutation reaches fixation.
 
 \subsection{Computational Modeling}
 
@@ -61,26 +61,43 @@ mutating the other in some small way, as two nodes in a neutral network. Many
 such networks may exist for a particular genome, each corresponding to a
 particular phenotype or fitness level. In some cases, each of these networks
 will be small. In other cases, such networks may be expansive and may permeate
-the genotype space. In the case where the neutral network for a given phenotype
+the sequence space. In the case where the neutral network for a given phenotype
 (or fitness value) forms a single giant component (or comes close) it is said
 to be a percolating neutral network.
 
 \subsubsection{Fitness Landscapes}
 
 \paragraph{}
-A set of genotypes and their corresponding phenotypes or fitness levels make up
-a fitness landscape, which is simply a useful visual metaphor. The intuition is
-that higher ground within the landscape corresponds to higher fitness. Fitness
-landscapes can be smooth or rugged. Smooth landscapes have lower peaks, in
-other words there is less difference between fit and unfit genotypes.
+Evolutionary models are composed of a set of genotypes and their corresponding
+phenotypes (or simply fitness values).  If we consider an arbitrary model with
+only two dimensions, and take fitness as a third dimension, we arrive at a
+useful visual metaphor which resembles a topographical map. This motivates the
+term ``fitness landscape''. The intuition is that higher ground within the
+landscape corresponds to higher fitness.
 
 \paragraph{}
-Fitness landscapes can also be correlated or uncorrelated. A correlated
-landscape exhibits auto-correlation. This is most naturally understood as the
-expected correlation between successive fitness values during a random walk
-across the landscape. Visually, a correlated landscape might look similar to
-rolling hills, whereas an uncorrelated landscape would appear extremely jagged,
-sometimes going from very low to very high in a short distance.
+More rigorously, a fitness landscape can be defined as ``a mapping from a
+configuration space that is equipped with some notion of adjacency, nearness,
+distance or accessibility, into the real numbers.''~\cite{Calcott2008}
+
+\paragraph{}
+One important statistical property of a fitness landscape is its ``correlation
+structure'', which can be defined simply as ``how similar the fitness values of
+one-mutant neighbors in the space are''~\cite{Kauffman1993}. More specifically,
+the correlation of a landscape is the expected autocorrelation of a random walk
+(see below for a discussion of random and adaptive walks) over
+it~\cite{Weinberger1990}. Fitness landscapes are often referred to as
+``correlated'' or ``uncorrelated'', depending on the frame of reference.
+Visually, an uncorrelated landscape would appear jagged, with some neighboring
+points in the space having radically different fitness values.
+
+\paragraph{}
+Fitness landscapes are sometimes also referred to as ``smooth'' or ``rugged''.
+While these terms do not have rigorous universal definitions, they are
+generally defined as landscapes with relatively high autocorrelation and low
+autocorrelation, respectively. In other words, on a smooth landscape, the
+fitness at a particular point in sequence space can be expected to carry more
+information about the fitnesses of its neighbors~\cite{Kauffman1993}.
 
 \subsubsection{Adaptive Walks}
 

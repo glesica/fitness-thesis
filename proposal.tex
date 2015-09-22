@@ -99,20 +99,34 @@ autocorrelation, respectively. In other words, on a smooth landscape, the
 fitness at a particular point in sequence space can be expected to carry more
 information about the fitnesses of its neighbors~\cite{Kauffman1993}.
 
+\subsubsection{Random Walks}
+
+\paragraph{}
+We will define a walk through sequence space (or over a fitness landscape,
+depending on your point of view) to be a path consisting of a sequence of
+genotypes, each of which differs from its neighbors, the genotypes before and
+after it in the sequence, by a single mutation.
+
+\paragraph{}
+A random walk is a path that is constructed recursively by starting at a
+genotype, choosing a random one-mutant neighbor (the choice may be uniformly
+random or use some other distribution or algorithm), then repeating the process
+for the neighbor.
+
 \subsubsection{Adaptive Walks}
 
 \paragraph{}
-An adaptive walk over a fitness landscape is the process of choosing a
-genotype, then mutating it into a new, fitter genotype and repeating the
-process. The fact that the new genotype is always fitter (or possibly at least
-as fit) as the current genotype clearly differentiates an adaptive walk from a
-random walk, which can also be useful to the study of fitness landscapes. It is
-helpful to know that this process is often called ``hill climbing'', which
-matches up with the landscape metaphor quite neatly.
+An adaptive walk is similar to a random walk. However, instead of choosing
+one-mutant neighbors at random, they are chosen with an eye toward improving
+the fitness of the selected genotype. The path corresponding to a particular
+adaptive walk, then, has the property that each genotype on the path is fitter
+than the one that came before it. This process is often referred to as
+``hill-climbing'', which corresponds nicely with the fitness landscape as a
+visual metaphor.
 
 \paragraph{}
-There are several different methods for choosing the next genotype to occupy
-during an adaptive walk. Some of the common ones are nicely summarized
+There are several different methods for choosing the next genotype during an
+adaptive walk. Some of the common ones are nicely summarized
 in~\cite{Nowak2015}. These include fitness-dependent, where the choice is made
 randomly, but fitter genotypes are given preference. Alternately, the choice
 can be purely random. A greedy strategy chooses the fittest candidate, and
@@ -120,18 +134,17 @@ finally, a reluctant strategy chooses the least fit candidate that is fitter
 than the current genotype.
 
 \paragraph{}
-Fitness landscapes have traditionally been seen as rugged, with many, more or
-less independent, peaks and valleys pervading the space. Under these
-conditions, it is possible, even likely, that a population undergoing an
-adaptive walk will become ``trapped'' at a local optimum. Imagine attempting to
-reach the summit of Mount Everest by starting where you are and continuously
-walking toward a higher elevation. You will almost certainly end up at the top
-of some hill or smaller mountain with nowhere to go.
+On rugged fitness landscapes, adaptive walks can become ``stuck'' at local
+optima because of the constraint that each genotype must be fitter than the one
+before it. In fact, this outcome is quite likely. Think of trying to climb
+Mount Everest by starting at a random point on the surface of the Earth and
+only moving uphill. You would almost certainly end up stuck at the top of some
+small hill.
 
 \subsubsection{Neutral Networks}
 
 \paragraph{}
-Neutral landscapes, on the other hand, can be more accurately imagined as
+Neutral fitness landscapes can be more accurately imagined as
 mountain ranges, with ridges running along slopes joining together peaks,
 saddles between the peaks themselves, and relatively flat valleys and meadows.
 Adaptive walks on such landscapes are likely to result in higher fitness, as

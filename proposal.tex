@@ -1,4 +1,4 @@
-\documentclass[12pt,letterpaper,titlepage,draft]{article}
+\documentclass[12pt,letterpaper,titlepage]{article}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -144,19 +144,31 @@ small hill.
 \subsubsection{Neutral Networks}
 
 \paragraph{}
-Neutral fitness landscapes can be more accurately imagined as
-mountain ranges, with ridges running along slopes joining together peaks,
-saddles between the peaks themselves, and relatively flat valleys and meadows.
-Adaptive walks on such landscapes are likely to result in higher fitness, as
-demonstrated by Barnett~\cite{Barnett1998} or, put another way, populations are
-less likely to become stuck at local optima~\cite{Newman1998}.
+Neutral fitness landscapes are difficult to describe intuitively since all of
+their characteristics might also be present in non-neutral landscapes. However,
+Crutchfield~\cite{Crutchfield1999} captures the key characteristics. He
+describes neutral landscapes as networks of interconnected neutral basins,
+see Figure~\ref{fig:crutchfield-basins}. In a way, his description recalls the children's
+game ``Chutes and Ladders'', though the mechanics are slightly different.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{crutchfield-basins}
+    \caption{Crutchfield's neutral basins.}
+    \label{fig:crutchfield-basins}
+\end{figure}
 
 \paragraph{}
-Another way to describe a neutral landscape is as a set of neutral basins, each
-with some number of passageways that lead to other basins of higher or lower
-fitness (a bit like a multi-level waterfall). A balance between selection and
-deleterious mutation prevents the population from falling ``back'' into a lower
-fitness basin~\cite{Crutchfield1999}.
+Crutchfield describes neutral fitness landscapes as a set of neutral basins,
+each with some number of passageways that lead to other basins of higher or
+lower fitness (a bit like a multi-level waterfall). A balance between selection
+and deleterious mutation prevents the population from falling ``back'' into a
+lower fitness basin~\cite{Crutchfield1999}.
+
+\paragraph{}
+Adaptive walks on neutral fitness landscapes are likely to result in higher
+fitness, as demonstrated by Barnett~\cite{Barnett1998} or, put another way,
+populations are less likely to become stuck at local optima~\cite{Newman1998}.
 
 \paragraph{}
 We can think of exploring a fitness landscape by following neutral pathways

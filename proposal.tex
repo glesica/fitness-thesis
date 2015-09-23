@@ -209,6 +209,71 @@ memory required to store such a table grows exponentially with $K$, fitness
 values are more commonly generated on-demand. The result, however, is
 unchanged.}.
 
+\subsubsection{Example NK Landscape}
+
+\paragraph{}
+We will choose $N=3$, and $K=1$ because they yield a simple landscape that
+nonetheless exercises all of the model's features. For each of the $N$ loci, in
+other words, for each of the slots in a genotype that is part of this model, we
+chose 1 other locus to associate with it (Kauffman refers to them as
+epistatically linked). Below is an example set of assignments.
+
+\begin{displaymath}
+    \left[3,3,1\right]
+\end{displaymath}
+
+\paragraph{}
+In this particular case, the first locus is linked to the third locus. The
+second locus is linked to the third locus as well. Finally, the third locus is
+linked to the first locus. Note that nothing is linked to the second locus,
+this is perfectly valid.
+
+\paragraph{}
+The next step in constructing an NK model, at least conceptually, is to produce
+a fitness table for each locus. In this case, $K$ is small, so we can produce a
+complete table for each locus. We will assume two alleles and represent them as
+0 and 1.
+
+\begin{center}
+    \begin{tabular}{l l}
+        $\left[0, 0\right]$ & 0.887 \\
+        $\left[0, 1\right]$ & 0.411 \\
+        $\left[1, 0\right]$ & 0.799 \\
+        $\left[1, 1\right]$ & 0.075 \\
+    \end{tabular}
+    \quad
+    \begin{tabular}{l l}
+        $\left[0, 0\right]$ & 0.757 \\
+        $\left[0, 1\right]$ & 0.267 \\
+        $\left[1, 0\right]$ & 0.355 \\
+        $\left[1, 1\right]$ & 0.909 \\
+    \end{tabular}
+    \quad
+    \begin{tabular}{l l}
+        $\left[0, 0\right]$ & 0.830 \\
+        $\left[0, 1\right]$ & 0.162 \\
+        $\left[1, 0\right]$ & 0.657 \\
+        $\left[1, 1\right]$ & 0.211 \\
+    \end{tabular}
+\end{center}
+
+\paragraph{}
+We can now evaluate the fitness of any genotype that is valid for our model
+(any string of three bits). To do this, we look up a fitness value for each
+locus in its table, then average them (to keep the overall fitness value
+between 0 and 1). For example, we will evaluate the string
+$\left[1,0,1\right]$. First, we look up the fitness for each locus:
+
+\begin{displaymath}
+    \left[0.075, 0.267, 0.211\right].
+\end{displaymath}
+
+\paragraph{}
+Then we average them to yield the fitness for the genotype as a whole: $0.184$.
+Note that we used the fourth entry in the first table, because the first locus
+is linked to the third locus, and in our example genotype, they are both equal
+to 1, so we used the $\left[1, 1\right]$ entry in the first table.
+
 \subsection{Variants}
 
 \paragraph{}

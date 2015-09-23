@@ -308,16 +308,21 @@ on the fitness of the genotype.
 Gavrilets demonstrated~\cite{Gavrilets1997} that the percolation threshold for
 an uncorrelated fitness landscape scales with the inverse of the number of
 dimensions under consideration. The percolation threshold is the probability
-that a given genotype is part of a particular neutral network (Gavrilets
-limited fitness values to ``high'' and ``low'', so the neutral network in
-question was the high fitness network).
+that a given genotype is part of a particular percolating neutral network
+(Gavrilets limited fitness values to ``high'' and ``low'', so the neutral
+network in question was the high fitness network). Essentially, the percolation
+threshold represents the fraction of the sequence space that must be part of a
+neutral network for it to become a percolating network.
 
 \paragraph{}
 In other words, as the number of dimensions goes up, it takes a smaller share
 of the nodes to create a percolating neutral network. This makes sense because
 each additional dimension increases the number of ``routes'' between two
-points. For example, cross the Grand Canyon is quite an adventure in a car or
-on foot, but if a helicopter is available, it becomes a fairly simple task.
+points. This is really quite intuitive for low dimensions. For example, imagine
+a video game like Super Mario Brothers in which the character moves in two
+dimensions. Many a child has observed in frustration (or perhaps annoyance)
+that most of the puzzles in such games would be trivial if only a third
+dimension were available to allow greater freedom of movement.
 
 \paragraph{}
 We hypothesize that this holds for correlated landscapes as well, given an

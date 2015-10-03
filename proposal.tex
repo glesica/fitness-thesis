@@ -2,6 +2,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{caption}
 \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -50,27 +51,32 @@ mutation is known as a potentiating mutation.
 
 \paragraph{}
 A population undergoing neutral evolution is likely to exhibit high genotypic
-diversity. This presents opportunities for the population. Its members are able
-to explore the sequence space since selective pressure does not operate in the
-context of neutral mutations. As a result, there is a greater likelihood that
-some population member will ``discover'' a genotype that maps to a
-higher-fitness phenotype, elevating the entire population when, and if, the
-mutation reaches fixation.
+diversity~\cite{Huynen1996a}. This presents opportunities for the population.
+Its members are able to explore the sequence space since selective pressure
+does not operate in the context of neutral mutations. As a result, there is a
+greater likelihood that some population member will ``discover'' a genotype
+that maps to a higher-fitness phenotype, elevating the entire population when,
+and if, the mutation reaches fixation.
 
 \subsection{Computational Modeling}
 
 \paragraph{}
 In computational modeling we can think of two genotypes that produce the same
 phenotype (or which have equal fitness), each of which may be produced by
-mutating the other in some small way, as two nodes in a neutral network. Many
-such networks may exist for a particular genome, each corresponding to a
+mutating the other in some small way, as two nodes in a neutral network.
+
+\paragraph{}
+Many such networks may exist for a particular genome, each corresponding to a
 particular phenotype or fitness level. In some cases, each of these networks
 will be small. In other cases, such networks may be expansive and may permeate
-the sequence space. A connected component of a network that contains a constant
-fraction, as opposed to $O\left(\log n\right)$, of the nodes in the entire
-network is known as a giant component. In the case where the neutral network
-for a given phenotype (or fitness value) forms a giant component (or comes
-close) it is said to be a percolating neutral network.
+the sequence space.
+
+\paragraph{}
+A connected component of a network that contains a constant fraction, as
+opposed to $O\left(\log n\right)$, of the nodes in the entire network is known
+as a giant component. In the case where the neutral network for a given
+phenotype (or fitness value) forms a giant component (or comes close) it is
+said to be a percolating neutral network.
 
 \subsubsection{Fitness Landscapes}
 
@@ -127,9 +133,9 @@ An adaptive walk is similar to a random walk. However, instead of choosing
 one-mutant neighbors at random, they are chosen with an eye toward improving
 the fitness of the selected genotype. The path corresponding to a particular
 adaptive walk, then, has the property that each genotype on the path is fitter
-than the one that came before it. This process is often referred to as
-``hill-climbing'', which corresponds nicely with the fitness landscape as a
-visual metaphor.
+than (or at least as fit as) the one that came before it. This process is often
+referred to as ``hill-climbing'', which corresponds nicely with the fitness
+landscape as a visual metaphor.
 
 \paragraph{}
 There are several different methods for choosing the next genotype during an
@@ -139,6 +145,12 @@ randomly, but fitter genotypes are given preference. Alternately, the choice
 can be purely random. A greedy strategy chooses the fittest candidate, and
 finally, a reluctant strategy chooses the least fit candidate that is fitter
 than the current genotype.
+
+\paragraph{}
+If any of the above strategies (which the exception of the reluctant climber)
+are allowed to consider mutants that are equally fit in addition to those that
+are fitter, the adaptive walk may explore fitness plateaus, or sets of
+genotypes with equal fitness.
 
 \paragraph{}
 On rugged fitness landscapes, adaptive walks can become ``stuck'' at local
@@ -172,6 +184,8 @@ lower fitness (a bit like a multi-level waterfall). A balance between selection
 and deleterious mutation prevents the population from falling ``back'' into a
 lower fitness basin~\cite{Crutchfield1999}.
 
+\subsubsection{Evolution on Neutral Networks}
+
 \paragraph{}
 Adaptive walks on neutral fitness landscapes are likely to result in higher
 fitness, as demonstrated by Barnett~\cite{Barnett1998} or, put another way,
@@ -184,6 +198,22 @@ drives this process. Eventually (or perhaps frequently), some individual will
 mutate off of the neutral network and onto a neutral network with higher
 fitness. If this mutation fixes in the population, then the population will
 have adapted or evolved.
+
+\paragraph{}
+There are two error thresholds that are important in population-based
+evolution. The genotypic error threshold is the probability of a single-locus
+mutation. When the genotypic error threshold is greater than zero and the
+population is evolving on a percolating neutral network the population will
+spread out through sequence space. In fact, Huynen et al.\ found that after
+roughly 500 generations all of the original sequences had disappeared from the
+population.
+
+\paragraph{}
+At the same time, however, the phenotypic error threshold, the point beyond
+which the dominant phenotype will disappear from the population, is higher that
+the genotypic error threshold on neutral networks. This means that while the
+original sequences had disappeared after 500 generations, the dominant
+phenotype survived until the end of the simulation (1,460 generations).
 
 \section{NK Fitness Landscapes}
 
@@ -241,28 +271,39 @@ a fitness table for each locus. In this case, $K$ is small, so we can produce a
 complete table for each locus. We will assume two alleles and represent them as
 0 and 1.
 
-\begin{center}
-    \begin{tabular}{l l}
-        $\left[0, 0\right]$ & 0.887 \\
-        $\left[0, 1\right]$ & 0.411 \\
-        $\left[1, 0\right]$ & 0.799 \\
-        $\left[1, 1\right]$ & 0.075 \\
-    \end{tabular}
-    \quad
-    \begin{tabular}{l l}
-        $\left[0, 0\right]$ & 0.757 \\
-        $\left[0, 1\right]$ & 0.267 \\
-        $\left[1, 0\right]$ & 0.355 \\
-        $\left[1, 1\right]$ & 0.909 \\
-    \end{tabular}
-    \quad
-    \begin{tabular}{l l}
-        $\left[0, 0\right]$ & 0.830 \\
-        $\left[0, 1\right]$ & 0.162 \\
-        $\left[1, 0\right]$ & 0.657 \\
-        $\left[1, 1\right]$ & 0.211 \\
-    \end{tabular}
-\end{center}
+\begin{table}
+    \captionsetup{labelformat=empty}
+    \parbox{.3\linewidth}{
+        \centering
+        \begin{tabular}{l l}
+            $\left[0, 0\right]$ & 0.887 \\
+            $\left[0, 1\right]$ & 0.411 \\
+            $\left[1, 0\right]$ & 0.799 \\
+            $\left[1, 1\right]$ & 0.075 \\
+        \end{tabular}
+        \caption{Table 1}
+    }
+    \parbox{.3\linewidth}{
+        \centering
+        \begin{tabular}{l l}
+            $\left[0, 0\right]$ & 0.757 \\
+            $\left[0, 1\right]$ & 0.267 \\
+            $\left[1, 0\right]$ & 0.355 \\
+            $\left[1, 1\right]$ & 0.909 \\
+        \end{tabular}
+        \caption{Table 2}
+    }
+    \parbox{.3\linewidth}{
+        \centering
+        \begin{tabular}{l l}
+            $\left[0, 0\right]$ & 0.830 \\
+            $\left[0, 1\right]$ & 0.162 \\
+            $\left[1, 0\right]$ & 0.657 \\
+            $\left[1, 1\right]$ & 0.211 \\
+        \end{tabular}
+        \caption{Table 3}
+    }
+\end{table}
 
 \paragraph{}
 We can now evaluate the fitness of any genotype that is valid for our model
@@ -366,30 +407,6 @@ functions. Our CGP library\footnote{\url{https://github.com/glesica/CGP.jl}}
 attempts to combine computation performance with ease-of-use.
 
 \section{Experiments}
-
-\subsection{Shifting Balance Experiment}
-
-\paragraph{}
-The first project will test the shifting balance theory proposed by
-Wright~\cite{Wright1982}\cite{Wright1931}. We will enumerate the possible
-genotypes for small NK and NKp landscapes, then compute the
-prominence\footnote{Prominence is a concept from topography. The prominence of
-a peak is defined to be the vertical distance between the peak and the
-lowest contour line encircling it that has no higher summit.} and identify the
-key col\footnote{The key col, also called the saddle point, of a peak is the
-lowest point on the highest ridge between a peak and a higher peak that
-defines its prominence.} for each fitness peak.
-
-\paragraph{}
-Ordinarily, a large population would be unlikely to move between fitness peaks,
-even on a neutral landscape. Wright's theory attempted to resolve the apparent
-conflict between theory and observation by suggesting that a subpopulation may
-be able to sustain temporarily reduced fitness given a sufficiently high rate
-of mutation and a sufficiently low rate of gene flow. Wright suggested that a
-subpopulations might ``jump'' to a neighboring domain of attraction and climb
-the corresponding peak. The beneficial mutation might then fix in the larger
-population. We propose that this process is simpler and more likely to occur if
-there exist neutral or nearly-neutral ridges between peaks.
 
 \section{Analysis}
 

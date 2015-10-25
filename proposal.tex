@@ -3,6 +3,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{caption}
+\usepackage{csquotes}
 \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -370,8 +371,39 @@ that most of the puzzles in such games would be trivial if only a third
 dimension were available to allow greater freedom of movement.
 
 \paragraph{}
-We hypothesize that this holds for correlated landscapes as well, given an
+We hypothesize that this holds for more correlated landscapes as well, given an
 appropriate balance between selection and mutation pressures.
+
+\subsection{Real-Valued Fitness Landscapes}
+
+\paragraph{}
+It would be useful to have one or more measures of neutrality that would apply
+to real-valued fitness landscapes. The NK landscape is generally understood to
+be entirely non-neutral. This is a result of the fact that the fitness of a
+given point on the landscape is the sum of randomly chosen real values. In
+practice, due to the use of floating point values in place of true real values,
+two adjacent points on the landscape might have the same fitness value, but it
+is incredibly unlikely.
+
+\paragraph{}
+However, the biological case for the strict definition of ``neutral'' implied
+above is weak. As pointed out by Hughes in~\cite{Hughes2007}:
+
+\begin{displayquote}
+An important prediction of the neutral theory is that, when the selection
+coefficient in favor of an advantageous mutant or against a deleterious mutant
+is less than the reciprocal of twice the effective population size, that mutant
+becomes effectively neutral and is not exposed to selection.
+\end{displayquote}
+
+In the context of an NK landscape, then, neutral neighbors need not have
+identical fitness values. The quote above also suggests a definition of
+neutrality that might apply comfortably to NK landscapes.
+
+\paragraph{}
+With a definition and measure of neutrality on NK landscapes in-hand, our next
+goal will be to determine how changes in the $N$ and $K$ parameters impact
+neutrality.
 
 \section{Methods}
 

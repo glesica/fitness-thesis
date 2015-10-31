@@ -64,7 +64,15 @@ and if, the mutation reaches fixation.
 \paragraph{}
 In computational modeling we can think of two genotypes that produce the same
 phenotype (or which have equal fitness), each of which may be produced by
-mutating the other in some small way, as two nodes in a neutral network.
+mutating the other in some small way, as two nodes in a neutral network. The
+neutral network itself is the set of genotypes that map to the given phenotype
+or fitness level.
+
+\paragraph{}
+Two genotypes within a neutral network are connected if each
+can mutate into the other, usually by a single-point mutation (this is
+considered to be a biologically-feasible constraint since the probability of a
+mutation at any given locus within a gene is extremely low CITATION).
 
 \paragraph{}
 Many such networks may exist for a particular genome, each corresponding to a
@@ -74,10 +82,21 @@ the sequence space.
 
 \paragraph{}
 A connected component of a network that contains a constant fraction, as
-opposed to $O\left(\log n\right)$, of the nodes in the entire network is known
-as a giant component. In the case where the neutral network for a given
-phenotype (or fitness value) forms a giant component (or comes close) it is
-said to be a percolating neutral network.
+opposed to $O\left(\log n\right)$ (where $n$ is the number of nodes in the
+network), of the nodes in the entire network is known as a giant component. In
+the case where the neutral network for a given phenotype (or fitness value)
+forms a giant component (or comes close) it is said to be a percolating neutral
+network.
+
+\paragraph{}
+Put another way, a percolating network is one for which most nodes that are not
+in the network are nearby neighbors of one or more nodes that are in the
+network. For example, the human circulatory system may be thought of as a
+percolating network. Most cells in the body that are not part of the
+circulatory system are still within a few cells distance of one or more cells
+that are part of the circulatory system.
+
+% TODO: Include diagram from Gavrilets
 
 \subsubsection{Fitness Landscapes}
 
@@ -87,7 +106,7 @@ phenotypes (or simply fitness values).  If we consider an arbitrary model with
 only two dimensions, and take fitness as a third dimension, we arrive at a
 useful visual metaphor which resembles a topographical map. This motivates the
 term ``fitness landscape''. The intuition is that higher ground within the
-landscape corresponds to higher fitness.
+landscape corresponds to higher fitness.~\cite{Wright1932}
 
 \paragraph{}
 More rigorously, a fitness landscape can be defined as ``a mapping from a
@@ -99,11 +118,17 @@ One important statistical property of a fitness landscape is its ``correlation
 structure'', which can be defined simply as ``how similar the fitness values of
 one-mutant neighbors in the space are''~\cite{Kauffman1993}. More specifically,
 the correlation of a landscape is the expected autocorrelation of a random walk
-(see below for a discussion of random and adaptive walks) over
-it~\cite{Weinberger1990}. Fitness landscapes are often referred to as
-``correlated'' or ``uncorrelated'', depending on the frame of reference.
-Visually, an uncorrelated landscape would appear jagged, with some neighboring
-points in the space having radically different fitness values.
+over it~\cite{Weinberger1990} (see below for a discussion of random and
+adaptive walks).
+
+\paragraph{}
+Fitness landscapes are often referred to as ``correlated'' or ``uncorrelated''.
+An uncorrelated landscape is characterized by low correlation between
+one-mutant neighboring genotypes. In other words, the fitness of a given
+genotype provides little or no information about the fitnesses of its
+one-mutant neighbors. Visually, an uncorrelated landscape would appear jagged,
+with some neighboring points in the space having radically different fitness
+values.
 
 \paragraph{}
 Fitness landscapes are sometimes also referred to as ``smooth'' or ``rugged''.
@@ -113,7 +138,7 @@ autocorrelation, respectively. In other words, on a smooth landscape, the
 fitness at a particular point in sequence space can be expected to carry more
 information about the fitnesses of its neighbors~\cite{Kauffman1993}.
 
-\subsubsection{Random Walks}
+\subsubsection{Walks}
 
 \paragraph{}
 We will define a walk through sequence space (or over a fitness landscape,
@@ -122,10 +147,8 @@ genotypes, each of which differs from its neighbors, the genotypes before and
 after it in the sequence, by a single mutation.
 
 \paragraph{}
-A random walk is a path that is constructed recursively by starting at a
-genotype, choosing a random one-mutant neighbor (the choice may be uniformly
-random or use some other distribution or algorithm), then repeating the process
-for the neighbor.
+A random walk is a path along which neighbors are chosen randomly (the choices
+may be uniformly random or may use some other distribution or algorithm).
 
 \subsubsection{Adaptive Walks}
 
@@ -143,15 +166,14 @@ There are several different methods for choosing the next genotype during an
 adaptive walk. Some of the common ones are nicely summarized
 in~\cite{Nowak2015}. These include fitness-dependent, where the choice is made
 randomly, but fitter genotypes are given preference. Alternately, the choice
-can be purely random. A greedy strategy chooses the fittest candidate, and
-finally, a reluctant strategy chooses the least fit candidate that is fitter
-than the current genotype.
+may be purely random (among the fitter genotypes). A greedy strategy chooses
+the fittest candidate, and finally, a reluctant strategy chooses the least fit
+candidate that is at least as-fit as the current genotype.
 
 \paragraph{}
-If any of the above strategies (which the exception of the reluctant climber)
-are allowed to consider mutants that are equally fit in addition to those that
-are fitter, the adaptive walk may explore fitness plateaus, or sets of
-genotypes with equal fitness.
+If any of the above strategies are allowed to consider mutants that are equally
+fit in addition to those that are fitter, the adaptive walk may explore fitness
+plateaus, or sets of genotypes with equal fitness.
 
 \paragraph{}
 On rugged fitness landscapes, adaptive walks can become ``stuck'' at local
@@ -453,6 +475,6 @@ attempts to combine computation performance with ease-of-use.
 
 \section{Analysis}
 
-\bibliographystyle{acm}
+\bibliographystyle{apalike}
 \bibliography{fitness}{}
 \end{document}

@@ -463,6 +463,37 @@ dimension were available to allow greater freedom of movement.
 We hypothesize that the relationship identified by Gavrilets holds for NK
 landscapes as well, using the measure of neutrality we intend to develop.
 
+\subsection{Biologically Realistic Neutral Evolution}
+
+% TODO: Discuss the Fisher -> Kimura path from Orr.
+
+\paragraph{}
+While adaptive walks are a popular technique for evolutionary simulations, it
+may not be biologically appropriate to simulate a population as a single point
+in sequence space.
+
+\paragraph{}
+The use of a single point in sequence space to model an entire population
+relies on the assumption of strong selective pressure and a low mutation rate.
+In this scenario the population will be generally constrained to the dominant
+phenotype (see the discussion of error thresholds above).
+
+\paragraph{}
+However, in experimental evolution simulations, mutations rates are often quite
+high for computational reasons (a higher mutation rate means less computing
+power and time are required). Higher rates of mutation also exist in
+populations of simpler organisms.
+
+\paragraph{}
+In our case, we are also interested in simulating situations with weaker
+selection.
+
+\paragraph{}
+For the reasons discussed above, we intend to employ more biologically
+realistic simulation parameters. We will use proportional selection from a
+relatively large population instead of an adaptive walk or other selection
+techniques common in computational simulations such as Mu-Lambda.
+
 \section{Methods}
 
 \paragraph{}

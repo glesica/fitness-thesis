@@ -240,6 +240,11 @@ mutate off of the neutral network and onto a neutral network with higher
 fitness. If this mutation fixes in the population, then the population will
 have adapted or evolved.
 
+\subsubsection{Error Thresholds}
+
+% TODO: Add explanation of population genetics probability / time to fixation.
+% TODO: Add discussion of Eigen model.
+
 \paragraph{}
 There are two error thresholds that are important in population-based
 evolution. The genotypic error threshold is the probability of a single-locus
@@ -274,8 +279,8 @@ just a single peak.
 
 \paragraph{}
 An NK landscape is constructed by first choosing values for $N$ and $K$. Then,
-for each locus in $N$, $K$ other loci are chosen at random. For each
-combination of alleles for those $K+1$ loci (two alleles, 0 and 1, are
+for each locus out of the $N$ loci, $K$ other loci are chosen at random. For
+each combination of alleles for those $K+1$ loci (two alleles, 0 and 1, are
 typically used for simplicity), a fitness value between zero and one is chosen.
 
 \paragraph{}
@@ -382,10 +387,9 @@ are used, where $F$ is chosen in advance and is often set to 2.
 The NKp landscape, due to Barnett~\cite{Barnett1998}, adds an additional
 parameter $p$ which is assigned from the interval $\left[0,1\right]$. When
 fitness values are assigned during creation of the landscape, fitness of
-exactly 0 is chosen with probability $p$. This means that some loci will have
-make no contribution to genotype fitness for certain values of the $K$ loci to
-which they are linked. A change at one of these loci will then have no impact
-on the fitness of the genotype.
+exactly 0 is chosen with probability $p$. This means that for some combinations
+of alleles, changing one allele does not change the corresponding contribution
+to the fitness of the genotype.
 
 \section{Hypotheses}
 
@@ -398,7 +402,7 @@ be entirely non-neutral. This is a result of the fact that the fitness of a
 given point on the landscape is the sum of randomly chosen real values. In
 practice, due to the use of floating point values in place of true real values,
 two adjacent points on the landscape might have the same fitness value, but it
-is incredibly unlikely.
+is extremely unlikely.
 
 \paragraph{}
 However, the biological case for the strict definition of ``neutral'' implied
@@ -413,8 +417,8 @@ becomes effectively neutral and is not exposed to selection.
 
 \paragraph{}
 In the context of an NK landscape, then, neutral neighbors need not have
-identical fitness values. The quote above also suggests a definition of
-neutrality that might apply comfortably to NK landscapes.
+identical fitness values. The quote above also suggests that there is a
+definition of neutrality that might apply comfortably to NK landscapes.
 
 \paragraph{}
 Another potential measure of neutrality follows from work by Huynen, Stadler,
@@ -424,7 +428,7 @@ other words, even when the mutation rate is high enough that the population
 diffuses away from its initial genotype, the phenotype is still preserved.
 
 \paragraph{}
-A significant drawback to this method is that it requires a distinct phenotype,
+A significant drawback to this method is that it requires distinct phenotypes,
 which the NK model lacks. We may still be able to test it using logic circuits
 as a model instead, however.
 

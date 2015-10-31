@@ -177,21 +177,29 @@ plateaus, or sets of genotypes with equal fitness.
 
 \paragraph{}
 On rugged fitness landscapes, adaptive walks can become ``stuck'' at local
-optima because of the constraint that each genotype must be fitter than the one
-before it. In fact, this outcome is quite likely. Think of trying to climb
-Mount Everest by starting at a random point on the surface of the Earth and
-only moving uphill. You would almost certainly end up stuck at the top of some
-small hill.
+optima because of the constraint that each genotype must be at least as-fit
+than the one before it. In fact, this outcome is quite likely. Think of trying
+to climb Mount Everest by starting at a random point on the surface of the
+Earth and only moving uphill. You would almost certainly end up stuck at the
+top of some small hill.
+
+\paragraph{}
+The only exception to this outcome would be if you started within the ``basin
+of attraction'' of Mount Everest. That is, the region in which your chosen walk
+would actually take you to the top of the mountain. These basins may be quite
+small, and their size is not necessarily related to the height of their
+corresponding fitness peak.
 
 \subsubsection{Neutral Networks}
 
 \paragraph{}
-Neutral fitness landscapes are difficult to describe intuitively since all of
+Neutral fitness landscapes are difficult to describe intuitively since many of
 their characteristics might also be present in non-neutral landscapes. However,
-Crutchfield~\cite{Crutchfield1999} captures the key characteristics. He
-describes neutral landscapes as networks of interconnected neutral basins,
-see Figure~\ref{fig:crutchfield-basins}. In a way, his description recalls the children's
-game ``Chutes and Ladders'', though the mechanics are slightly different.
+Crutchfield and van Nimwegen~\cite{Crutchfield1999} give a good intuitive
+characterization. They describe neutral landscapes as networks of
+interconnected neutral basins, see Figure~\ref{fig:crutchfield-basins}. In a
+way, their description recalls the board game ``Chutes and Ladders'', though
+the mechanics are slightly different.
 
 \begin{figure}
     \centering
@@ -210,9 +218,19 @@ lower fitness basin~\cite{Crutchfield1999}.
 \subsubsection{Evolution on Neutral Networks}
 
 \paragraph{}
-Adaptive walks on neutral fitness landscapes are likely to result in higher
-fitness, as demonstrated by Barnett~\cite{Barnett1998} or, put another way,
-populations are less likely to become stuck at local optima~\cite{Newman1998}.
+Adaptive walks that allow fitness-neutral steps on neutral fitness landscapes
+are likely to result in higher fitness, as demonstrated by
+Barnett~\cite{Barnett1998} or, put another way, populations are less likely to
+become stuck at local optima~\cite{Newman1998}.
+
+\paragraph{}
+Neutral networks also may exhibit the ``perpetual innovation'' discussed by
+Huynen~\cite{Huynen1996}. This means that a population evolving on a neutral
+network continues to ``discover'' new phenotypes or (higher) fitness levels at
+a rate that is approximately constant over time. Barnett uses a slightly
+stronger version of this concept, which he calls ``constant innovation'', by
+adding the constraint that the rate of discovery is similar to that of an
+unconstrained random walk.
 
 \paragraph{}
 We can think of exploring a fitness landscape by following neutral pathways

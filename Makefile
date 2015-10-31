@@ -1,6 +1,8 @@
 PDFC=pdflatex
+BIBC=bibtex
+GREP=grep -Hn
 
-.PHONY: all clean proposal
+.PHONY: all clean proposal check
 
 all: proposal
 
@@ -10,8 +12,13 @@ clean:
 proposal: proposal.pdf
 
 proposal.pdf: proposal.tex fitness.bib
-	pdflatex proposal.tex
-	bibtex proposal
-	pdflatex proposal.tex
-	pdflatex proposal.tex
+	${PDFC} proposal.tex
+	${BIBC} proposal
+	${PDFC} proposal.tex
+	${PDFC} proposal.tex
+
+check:
+	${GREP} CITATION *.tex || true
+	${GREP} TODO *.tex || true
+	${GREP} FIXME *.tex || true
 

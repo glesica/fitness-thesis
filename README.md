@@ -7,4 +7,5 @@ part of the materials to be compiled and/or run.
 
 ## Tools
 
-Various "release checks" can be run with `make check`. This includes checking for `TODO`, `FIXME`, and `CITATION` annotations.
+Various "release checks" can be run with `make check`. This includes checking
+for `TODO`, `FIXME`, and `CITATION` annotations.

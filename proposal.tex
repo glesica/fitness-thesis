@@ -374,7 +374,7 @@ Note that we used the fourth entry in the first table, because the first locus
 is linked to the third locus, and in our example genotype, they are both equal
 to 1, so we used the $\left[1, 1\right]$ entry in the first table.
 
-\subsection{Variants}
+\subsection{NK Variants}
 
 \paragraph{}
 One noteworthy, but perhaps not entirely obvious, implication of the NK design
@@ -400,7 +400,89 @@ exactly 0 is chosen with probability $p$. This means that for some combinations
 of alleles, changing one allele does not change the corresponding contribution
 to the fitness of the genotype.
 
+\subsection{Spatially Structured Populations}
+
+\paragraph{}
+A population is considered to be spatially structured, or subdivided, if it is
+partitioned into two or more sub-populations and gene flow between
+sub-populations is limited. Population structure favors exploration of a
+fitness landscape over exploitation of nearby beneficial mutations.
+
+\paragraph{}
+Structured populations may hold an advantage on rugged
+landscapes~\cite{Nahum2015} as they can explore distant peaks and are less
+likely to become trapped at local optima.
+
 \section{Hypotheses}
+
+\subsection{Spatial Subdivision and Reluctant Walks}
+
+\paragraph{}
+We conjecture that the adaptive dynamics of a reluctant adaptive walk are
+approximately equivalent to those of a spatially subdivided population
+undergoing adaptation for certain rugged landscapes. The logic here is that
+both processes sacrifice some exploitation for greater exploration.
+
+\paragraph{}
+Since subdivided populations are smaller than the overall population size,
+selection should be weaker. In this situation, the population is more likely to
+escape a domain of attraction for another, with a potentially higher peak.
+Likewise for a reluctant adaptive walk.
+
+\subsection{Starting Position}
+
+% TODO: Add section explaining structured and unstructured populations.
+
+\paragraph{}
+In~\cite{Nahum2015}, Nahum, et al.\ evolve two populations, one structure, one
+unstructure, on the same landscape. Both populations start from the same
+starting conditions far from any peak. If the structured population, the
+``tortoise'', ends up at a higher fitness peak, the landscape is taken to have
+been more rugged, since rugged landscapes confer an advantage to structured
+populations.
+
+\paragraph{}
+However, this finding is probably sensitive to starting conditions. For
+example, if the population, as occurs in biological systems, starts the
+evolutionary process on a local fitness peak then a structured population may
+be at an even greater advantage since each sub-population will experience less
+selection pressure and is therefore more likely to ``escape'' the peak.
+
+\section{Experiments}
+
+\section{Methods}
+
+\paragraph{}
+To facilitate testing our hypotheses, we intend to create two pieces of
+reusable software, both of which will be released as open source software.
+
+\subsection{NK.jl Library}
+
+\paragraph{}
+We have opted to generalize our NK landscape
+implementation\footnote{\url{https://github.com/glesica/NK.jl}} so that it may
+be used by others in the future. We will provide it as a separate package under
+a permissive license that will hopefully allow future work and improvement.  We
+will use this library for our own experiments in addition to contributing it to
+the community as open source software.
+
+\paragraph{}
+We intend to implement several NK variants including NKq and NKp neutral
+landscapes. We will also provide implementations of several common techniques
+such as adaptive walks and proportional selection from a population.
+
+\subsection{CGP.jl Library}
+
+\paragraph{}
+Cartesian Genetic Programming (CGP) eschews the tree structures more commonly
+associated with genetic programming in favor of a grid (hence ``Cartesian'') of
+functions that can take as their inputs the outputs from any preceding
+functions. Our CGP library\footnote{\url{https://github.com/glesica/CGP.jl}}
+attempts to combine computation performance with ease-of-use.
+
+\section{Analysis}
+
+\section{Potential Future Work}
 
 \subsection{Real-Valued Fitness Landscapes}
 
@@ -502,40 +584,6 @@ For the reasons discussed above, we intend to employ more biologically
 realistic simulation parameters. We will use proportional selection from a
 relatively large population instead of an adaptive walk or other selection
 techniques common in computational simulations such as Mu-Lambda.
-
-\section{Experiments}
-
-\section{Methods}
-
-\paragraph{}
-To facilitate testing our hypotheses, we intend to create two pieces of
-reusable software, both of which will be released as open source software.
-
-\subsection{NK.jl Library}
-
-\paragraph{}
-We have opted to generalize our NK landscape
-implementation\footnote{\url{https://github.com/glesica/NK.jl}} so that it may
-be used by others in the future. We will provide it as a separate package under
-a permissive license that will hopefully allow future work and improvement.  We
-will use this library for our own experiments in addition to contributing it to
-the community as open source software.
-
-\paragraph{}
-We intend to implement several NK variants including NKq and NKp neutral
-landscapes. We will also provide implementations of several common techniques
-such as adaptive walks and proportional selection from a population.
-
-\subsection{CGP.jl Library}
-
-\paragraph{}
-Cartesian Genetic Programming (CGP) eschews the tree structures more commonly
-associated with genetic programming in favor of a grid (hence ``Cartesian'') of
-functions that can take as their inputs the outputs from any preceding
-functions. Our CGP library\footnote{\url{https://github.com/glesica/CGP.jl}}
-attempts to combine computation performance with ease-of-use.
-
-\section{Analysis}
 
 \bibliographystyle{acm}
 \bibliography{fitness}{}

@@ -2,12 +2,19 @@ PDFC=pdflatex
 BIBC=bibtex
 GREP=grep -Hn
 
-.PHONY: all clean proposal check
+.PHONY: all clean tidy proposal check
 
 all: proposal
 
-clean:
-	rm -f *.aux *.log
+clean: tidy
+	rm -rf *.pdf
+
+tidy:
+	rm -f *.aux
+	rm -f *.bbl
+	rm -f *.blg
+	rm -f *.log
+	rm -f *.out
 
 proposal: proposal.pdf
 

@@ -4,4 +4,4 @@ addprocs(
   tunnel=true, dir="/home/glesica", topology=:master_slave)
 
 # Local processes
-addprocs(3, topology=:master_slave)
+addprocs(CPU_CORES - 1, topology=:master_slave)

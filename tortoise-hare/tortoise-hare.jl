@@ -1,15 +1,29 @@
 import NKLandscapes
 @everywhere const NK = NKLandscapes
 
-@everywhere immutable Job
-  trial::Int64     # Trial number
-  n::Int64
-  k::Int64
-  popsize::Int64   # Population size
-  gens::Int64      # Generations
-  moran::Int64     # Moran iterations
-  mutprob::Float64 # Mutation probability
-  checkint::Int64  # Checkpoint interval
+@everywhere abstract Job
+
+@everywhere immutable NKJob <: Job
+  trial::Int64       # Trial number
+  popsize::Int64     # Population size
+  gens::Int64        # Generations
+  moran::Int64       # Moran iterations
+  mutprob::Float64   # Mutation probability
+  checkint::Int64    # Checkpoint interval
+  nvalue::Int64      # N parameter
+  kvalue::Int64      # K parameter
+end
+
+@everywhere immutable NKpJob <: Job
+  trial::Int64       # Trial number
+  popsize::Int64     # Population size
+  gens::Int64        # Generations
+  moran::Int64       # Moran iterations
+  mutprob::Float64   # Mutation probability
+  checkint::Int64    # Checkpoint interval
+  nvalue::Int64      # N parameter
+  kvalue::Int64      # K parameter
+  pvalue::Float64    # p parameter
 end
 
 @everywhere immutable JobCheckpoint
@@ -19,17 +33,24 @@ end
   meanfit::Float64 # Generation mean fit
 end
 
-@everywhere immutable JobResult
-  job::Job
+@everywhere immutable JobResult{T <: Job}
+  job::T
   globmin::Float64           # Global min fitness
   globmax::Float64           # Global max fitness
   checks::Vector{JobCheckpoint}
 end
 
 @everywhere function runjob(job::Job)
+  println(STDERR, "running... ", job)
+
   res::JobResult
 
-  ls = NK.NKLandscape(job.n, job.k)
+  ls = if typeof(job) == NKJob
+    NK.NKLandscape(job.nvalue, job.kvalue)
+  else
+    NK.NKpLandscape(job.nvalue, job.kvalue, job.pvalue)
+  end
+
   pop = rand(NK.Population, ls, job.popsize)
 
   globmin, globmax = NK.fitrange(ls)
@@ -71,13 +92,31 @@ end
 end
 
 @everywhere function printheader()
-  println("trial,gen,n,k,moran,mutprob,popsize,globmin,globmax,minfit,maxfit,meanfit")
+  println("trial,gen,n,k,p,moran,mutprob,popsize,globmin,globmax,minfit,maxfit,meanfit")
 end
 
-@everywhere function printresult(result::JobResult)
-  for check = result.checks
-    println("$(result.job.trial),$(check.gen),$(result.job.n),$(result.job.k),",
-      "$(result.job.moran),$(result.job.mutprob),$(result.job.popsize),$(result.globmin),",
-      "$(result.globmax),$(check.minfit),$(check.maxfit),$(check.meanfit)")
+@everywhere function printresult(res::JobResult)
+  for check = res.checks
+    println("$(res.job.trial),",
+      "$(check.gen),",
+      "$(res.job.nvalue),",
+      "$(res.job.kvalue),",
+      "$(pvalue(res)),",
+      "$(res.job.moran),",
+      "$(res.job.mutprob),",
+      "$(res.job.popsize),",
+      "$(res.globmin),",
+      "$(res.globmax),",
+      "$(check.minfit),",
+      "$(check.maxfit),",
+      "$(check.meanfit)")
   end
 end
+
+@everywhere function printresult(exc::RemoteException)
+  throw(exc)
+end
+
+@everywhere pvalue(res::JobResult{NKJob}) = "NA"
+@everywhere pvalue(res::JobResult{NKpJob}) = res.job.pvalue
+

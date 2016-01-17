@@ -41,7 +41,7 @@ end
 end
 
 @everywhere function runjob(job::Job)
-  println(STDERR, "running... ", job)
+  println("running: $(job)")
 
   res::JobResult
 
@@ -90,33 +90,4 @@ end
 
   return res
 end
-
-@everywhere function printheader()
-  println("trial,gen,n,k,p,moran,mutprob,popsize,globmin,globmax,minfit,maxfit,meanfit")
-end
-
-@everywhere function printresult(res::JobResult)
-  for check = res.checks
-    println("$(res.job.trial),",
-      "$(check.gen),",
-      "$(res.job.nvalue),",
-      "$(res.job.kvalue),",
-      "$(pvalue(res)),",
-      "$(res.job.moran),",
-      "$(res.job.mutprob),",
-      "$(res.job.popsize),",
-      "$(res.globmin),",
-      "$(res.globmax),",
-      "$(check.minfit),",
-      "$(check.maxfit),",
-      "$(check.meanfit)")
-  end
-end
-
-@everywhere function printresult(exc::RemoteException)
-  throw(exc)
-end
-
-@everywhere pvalue(res::JobResult{NKJob}) = "NA"
-@everywhere pvalue(res::JobResult{NKpJob}) = res.job.pvalue
 

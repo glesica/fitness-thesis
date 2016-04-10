@@ -6,6 +6,7 @@ import NKLandscapes
 @everywhere immutable NKJob <: Job
   trial::Int64       # Trial number
   popsize::Int64     # Population size
+  popct::Int64       # Population count
   gens::Int64        # Generations
   moran::Int64       # Moran iterations
   mutprob::Float64   # Mutation probability
@@ -17,6 +18,7 @@ end
 @everywhere immutable NKpJob <: Job
   trial::Int64       # Trial number
   popsize::Int64     # Population size
+  popct::Int64       # Population count
   gens::Int64        # Generations
   moran::Int64       # Moran iterations
   mutprob::Float64   # Mutation probability
@@ -51,7 +53,11 @@ end
     NK.NKpLandscape(job.nvalue, job.kvalue, job.pvalue)
   end
 
-  pop = rand(NK.Population, ls, job.popsize)
+  pop = if job.popct == 1
+    rand(NK.Population, ls, job.popsize)
+  else
+    rand(NK.MetaPopulation, ls, job.popsize, job.popct)
+  end
 
   globmin, globmax = NK.fitrange(ls)
 

@@ -7,6 +7,7 @@ const N_VALUE = 15
 const K_VALUES = [0, 6, 12]
 const P_VALUES = [0.1, 0.9]
 const POP_SIZE = 1000
+const POP_COUNTS = [1, 2]
 const GENS_PER_TRIAL = 1000
 const MORAN_ITERS = [200, 800]
 const MUT_PROB = 0.1

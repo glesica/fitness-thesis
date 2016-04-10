@@ -3,13 +3,13 @@ include("output.jl")
 
 println("nworkers = ", nworkers())
 
-nkjobs = [NKJob(trial, POP_SIZE, GENS_PER_TRIAL, moran, MUT_PROB,
+nkjobs = [NKJob(trial, POP_SIZE, popct, GENS_PER_TRIAL, moran, MUT_PROB,
     CHECK_INTERVAL, N_VALUE, k)
-    for trial = 1:TRIALS_PER_RUN, moran = MORAN_ITERS, k = K_VALUES]
+    for trial = 1:TRIALS_PER_RUN, popct = POP_COUNTS, moran = MORAN_ITERS, k = K_VALUES]
 
-nkpjobs = [NKpJob(trial, POP_SIZE, GENS_PER_TRIAL, moran, MUT_PROB,
+nkpjobs = [NKpJob(trial, POP_SIZE, popct, GENS_PER_TRIAL, moran, MUT_PROB,
     CHECK_INTERVAL, N_VALUE, k, p)
-    for trial = 1:TRIALS_PER_RUN, moran = MORAN_ITERS, k = K_VALUES, p = P_VALUES]
+    for trial = 1:TRIALS_PER_RUN, popct = POP_COUNTS, moran = MORAN_ITERS, k = K_VALUES, p = P_VALUES]
 
 println("njobs = ", length(nkjobs) + length(nkpjobs))
 

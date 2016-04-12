@@ -63,7 +63,7 @@ end
 
   checks = JobCheckpoint[]
 
-  fits = NK.popfits(pop, ls)
+  fits = NK.popfits(pop)
   push!(checks, JobCheckpoint(
     1,
     fits |> minimum,
@@ -72,14 +72,14 @@ end
 
   for gen = 2:job.gens
     # Selection
-    NK.moransel!(pop, ls, job.moran)
+    NK.moransel!(pop, job.moran)
 
     # Mutation
-    NK.bsmutate!(pop, ls, job.mutprob)
+    NK.bsmutate!(pop, job.mutprob)
 
     # Checkpoint
     if (gen % job.checkint == 0)
-      fits = NK.popfits(pop, ls)
+      fits = NK.popfits(pop)
       push!(checks, JobCheckpoint(
         gen,
         fits |> minimum,

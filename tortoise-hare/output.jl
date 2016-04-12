@@ -1,7 +1,7 @@
 # Output functions
 
 function printheader(io)
-  println(io, "trial,gen,n,k,p,moran,mutprob,popsize,globmin,globmax,minfit,maxfit,meanfit")
+  println(io, "trial,gen,n,k,p,moran,mutprob,popsize,popct,globmin,globmax,minfit,maxfit,meanfit")
 end
 
 function printresult(io, res::JobResult)
@@ -14,6 +14,7 @@ function printresult(io, res::JobResult)
       "$(res.job.moran),",
       "$(res.job.mutprob),",
       "$(res.job.popsize),",
+      "$(res.job.popct),",
       "$(res.globmin),",
       "$(res.globmax),",
       "$(check.minfit),",
